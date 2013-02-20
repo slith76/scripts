@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 " script to synchronize two directories with the following structure
 " 	
@@ -15,9 +16,9 @@ import  os.path
 import 	hashlib
 import 	shutil
 import  logging
+import 	sys
+import  getopt
 
-source_path = '/tmp/testdir'
-dest_path = '/tmp/testdir2'
 log_file = os.path.expanduser('~')+'/.filemover.log'
 if not os.path.exists(log_file):
 	datei = file(log_file, 'a')
@@ -47,7 +48,27 @@ def md5Checksum(filePath):
 		m.update(data)
 	return m.hexdigest()
 
-def main():
+def main(argv):
+	source_path = ''
+	dest_path = ''
+	try:
+		opts, args = getopt.getopt(argv,"hs:d:",["srcdir=","dstdir="])
+	except getopt.GetoptError:
+		print 'filemover.py -s <srcdir> -d <dstdir>'
+		sys.exit(2)
+	for opt, arg in opts:
+		if opt == '-h':
+	        	print 'filemover.py -s <srcdir> -d <dstdir>'
+			sys.exit()
+		elif opt in ("-s", "--srcdir"):
+			source_path = arg
+		elif opt in ("-d", "--dstdir"):
+			dest_path = arg
+
+	if source_path == '' or dest_path == '':
+	       	print 'filemover.py -s <srcdir> -d <dstdir>'
+		sys.exit()
+
 	sync_dirs(source_path, dest_path)
 	sync_dirs(dest_path, source_path)
 
@@ -68,4 +89,4 @@ def main():
 						logging.info('[file] '+ os.path.join(source_path, dir, file)+" moved")
 
 if __name__ == "__main__":
-	    main()
+	main(sys.argv[1:])

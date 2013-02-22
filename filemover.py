@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 """
 " script to synchronize two directories with the following structure
+"
+" 	filemover.py -s <srcdir> -d <dstdir>
 " 	
-"	dir1/dirA/files -> dir2/dirA/files
-"	* es exsistieren keine Files in Level 1 (dir1)
-"	* es existieren keine Verzeichnisse in Level 2 (dir1/dirA)
+"	srcdir/dirA/files -> dstdir/dirA/files
+"	* es exsistieren keine Files in Level 1 (srcdir)
+"	* es existieren keine Verzeichnisse in Level 2 (srcdir/dirA)
 "	* alle Verzeichnisse werden im Level 1 syncronisiert 
-"	* dann werden alle Files aus dir1/dir* in die dir2-Struktur kopiert und
-"		in dir1 geloescht
+"	* dann werden alle Files aus srcdir/dir* in die dstdir-Struktur kopiert und
+"		in srcdir geloescht
 "
 """
 

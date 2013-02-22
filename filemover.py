@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 """
 " script to synchronize two directories with the following structure
 " 	

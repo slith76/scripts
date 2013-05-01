@@ -13,13 +13,12 @@
 "
 """
 
-import	os
-#import  os.path
-import 	hashlib
-import 	shutil
-import  logging
-import 	sys
-import  getopt
+import os
+import hashlib
+import shutil
+import logging
+import sys
+import getopt
 
 log_file = os.path.expanduser('~') + "/.filemover.log"
 if not os.path.exists(log_file):
